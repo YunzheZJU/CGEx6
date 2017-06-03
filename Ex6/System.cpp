@@ -425,6 +425,22 @@ void processNormalKey(unsigned char k, int x, int y) {
 		}
 		break;
 	}
+
+	// µ÷ÕûÎÆÀí
+	case '\\': {
+		scene.bMix = !scene.bMix;
+		if (scene.bMix) {
+			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+			cout << "\\ pressed.\n\tSwitch on tex-env mix mode." << endl;
+			strcpy(scene.message, "\\ pressed. Switch on tex-env mix mode.!");
+		}
+		else {
+			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+			cout << "\\ pressed.\n\tSwitch off tex-env mix mode." << endl;
+			strcpy(scene.message, "\\ pressed. Switch off tex-env mix mode.!");
+		}
+		updateList();
+	}
 	}
 }
 
