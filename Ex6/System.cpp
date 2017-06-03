@@ -77,7 +77,7 @@ void redraw() {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
 
-	if (scene.bmsaa)
+	if (scene.bMsaa)
 	{
 		glEnable(GL_MULTISAMPLE_ARB);
 	}
@@ -86,14 +86,14 @@ void redraw() {
 		glDisable(GL_MULTISAMPLE_ARB);
 	}
 
-	if (scene.bpoint) {
+	if (scene.bPoint) {
 		updatePoint();						// 更新点光源信息并启用
 		drawLight(scene.point, 0.5);
 	}
 	else {
 		glDisable(GL_LIGHT0);
 	}
-	if (scene.bspot) {
+	if (scene.bSpot) {
 		updateSpot();						// 更新聚光灯信息并启用
 		drawLight(scene.spot, 0.25);
 		drawLight(scene.spot_target, 0.25);
@@ -148,7 +148,7 @@ void updateView(int width, int height) {
 
 void processMouse(int button, int state, int x, int y) {
 	if (state == GLUT_DOWN) {
-		scene.bmsaa = !scene.bmsaa;
+		scene.bMsaa = !scene.bMsaa;
 		printf("switch msaa\n");
 		glutPostRedisplay();
 	}
@@ -215,8 +215,8 @@ void processNormalKey(unsigned char k, int x, int y) {
 	}
 	// 关闭点光源
 	case '0': {
-		scene.bpoint = !scene.bpoint;
-		if (scene.bpoint) {
+		scene.bPoint = !scene.bPoint;
+		if (scene.bPoint) {
 			cout << "0 pressed.\n\tTurn on point light." << endl;
 			strcpy(scene.message, "0 pressed. Turn on point light.");
 		}
@@ -228,8 +228,8 @@ void processNormalKey(unsigned char k, int x, int y) {
 	}
 	// 关闭聚光灯
 	case '1': {
-		scene.bspot = !scene.bspot;
-		if (scene.bspot) {
+		scene.bSpot = !scene.bSpot;
+		if (scene.bSpot) {
 			cout << "1 pressed.\n\tTurn on spot light." << endl;
 			strcpy(scene.message, "0 pressed. Turn on spot light.");
 		}
@@ -427,17 +427,31 @@ void processNormalKey(unsigned char k, int x, int y) {
 	}
 
 	// 调整纹理
-	case '\\': {
+	case '.': {
 		scene.bMix = !scene.bMix;
 		if (scene.bMix) {
 			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-			cout << "\\ pressed.\n\tSwitch on tex-env mix mode." << endl;
-			strcpy(scene.message, "\\ pressed. Switch on tex-env mix mode.!");
+			cout << ". pressed.\n\tSwitch on tex-env mix mode." << endl;
+			strcpy(scene.message, ". pressed. Switch on tex-env mix mode.");
 		}
 		else {
 			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-			cout << "\\ pressed.\n\tSwitch off tex-env mix mode." << endl;
-			strcpy(scene.message, "\\ pressed. Switch off tex-env mix mode.!");
+			cout << ". pressed.\n\tSwitch off tex-env mix mode." << endl;
+			strcpy(scene.message, ". pressed. Switch off tex-env mix mode.");
+		}
+		updateList();
+	}
+	case ',': {
+		scene.bSuper = !scene.bSuper;
+		if (scene.bSuper) {
+			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+			cout << ", pressed.\n\tSwitch on super texture mode." << endl;
+			strcpy(scene.message, ", pressed. Switch on super texture mode.");
+		}
+		else {
+			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+			cout << ", pressed.\n\tSwitch off super texture mode." << endl;
+			strcpy(scene.message, ", pressed. Switch off super texture mode.");
 		}
 		updateList();
 	}

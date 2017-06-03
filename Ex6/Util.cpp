@@ -48,7 +48,7 @@ void showSysStatus() {
 		glPushMatrix();							// 保存原矩阵
 			glLoadIdentity();						// 装入单位矩阵
 			glPushAttrib(GL_LIGHTING_BIT);
-				glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, scene.white);
+				//glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, scene.white);
 				glRasterPos2f(-460, 420);
 				for (c = fpstext; *c != '\0'; c++) {
 					glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *c);

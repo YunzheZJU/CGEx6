@@ -32,6 +32,10 @@ using namespace std;
 // Define BITMAP_ID
 #define BITMAP_ID 0x4D42
 
+// Define height and width for custom texture
+#define TEX_HEIGHT 256 
+#define TEX_WIDTH 256 
+
 typedef struct {
 	// 纹理标示符数组，保存3个纹理的标示符
 	unsigned int texture[3];
@@ -48,14 +52,15 @@ typedef struct {
 	GLfloat fTpRtt = 0.0f;						// Local rotating
 
 	// Initiate switch of the scene
-	GLboolean bpoint = GL_TRUE;					// Switch for point light
-	GLboolean bspot = GL_TRUE;					// Switch for spot light
+	GLboolean bPoint = GL_TRUE;					// Switch for point light
+	GLboolean bSpot = GL_TRUE;					// Switch for spot light
 	GLboolean bPersp = GL_TRUE;					// Switch for perspective mode
 	GLboolean bMix = GL_TRUE;					// Switch for tex-env mix mode
-	GLboolean bmsaa = GL_FALSE;					// Switch for perspective mode
+	GLboolean bMsaa = GL_FALSE;					// Switch for perspective mode
 	GLboolean bWire = GL_FALSE;					// Switch for line mode
 	GLboolean bAnim = GL_FALSE;					// Switch for global rotating
 	GLboolean bRtt = GL_FALSE;					// Switch for local rotating
+	GLboolean bSuper = GL_FALSE;				// Switch for super texture mode
 
 	// Initiate location of elements
 	GLfloat teapot[3] = { 0, 0, 0 };			// Position of teapot
@@ -91,6 +96,9 @@ typedef struct {
 
 	// Initiate the color of point light
 	GLfloat* point_color = point_white;
+
+	// Initiate the container for custom texture
+	GLubyte image[TEX_HEIGHT][TEX_WIDTH][3];
 }Myscene;
 
 extern Myscene scene;
@@ -108,10 +116,14 @@ enum {
 };
 
 /*Draw.cpp*/
+void drawTeapotSuper();
+void drawLegSuper();
+void drawDesktopSuper();
 void drawCube();
 void drawLeg();
 void drawDesktop();
-void drawScene();
+void drawTeapot();
+void drawObject();
 GLint genTableList();
 void drawLight(GLfloat* center, GLfloat radius);
 
@@ -119,6 +131,7 @@ void drawLight(GLfloat* center, GLfloat radius);
 void initTexture();
 unsigned char *LoadBitmapFile(char *filename, BITMAPINFOHEADER *bitmapInfoHeader);
 void texload(int i, char *filename);
+void generateTex();
 
 /*Light.cpp*/
 void initLight();

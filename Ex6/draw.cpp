@@ -2,11 +2,20 @@
 
 #pragma warning(disable:4996)
 
+void drawTeapotSuper() {
+	// 红漫反射+纹理
+}
+
+void drawLegSuper() {
+	// 复合纹理
+}
+
+void drawDesktopSuper() {
+	// 复合纹理
+}
+
 void drawCube() {
 	glScalef(0.5, 0.5, 0.5);
-
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, scene.texture[1]);  //选择纹理texture[1]
 
 	glBegin(GL_QUADS);
 		glNormal3f(0, 0, 1);
@@ -45,102 +54,95 @@ void drawCube() {
 		glTexCoord2i(0, 0); glVertex3i(1, -1, -1);
 		glTexCoord2i(1, 0); glVertex3i(-1, -1, -1);
 	glEnd();
+}
+
+void drawLeg() {
+	if (scene.bSuper) {
+		drawLegSuper();
+		return;
+	}
+
+	glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, scene.texture[1]);  //选择纹理texture[1]
+		glScalef(1, 1, 3);
+		drawCube();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawDesktop() {
+	glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, scene.texture[1]);  //选择纹理texture[1]
+		glScalef(5, 4, 1);
+		drawCube();
+	glDisable(GL_TEXTURE_2D);
+}
+
+void drawTeapot() {
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, scene.texture[2]);  //选择纹理texture[0]
+
+	glutSolidTeapot(1);
 
 	glDisable(GL_TEXTURE_2D);
 }
 
-void drawLeg() {
-	glScalef(1, 1, 3);
-	drawCube();
-}
-
-void drawDesktop() {
-	glScalef(5, 4, 1);
-	drawCube();
-}
-
-void drawScene() {
-	// 这时横x深y纵z
-	glPushAttrib(GL_LIGHTING_BIT);
-		// teapot
+void drawObject() {
+	// 横x深y纵z
+	// teapot
+	glPushMatrix();
+		glTranslatef(scene.teapot[X], scene.teapot[Y], scene.teapot[Z]);
 		glPushMatrix();
-			glTranslatef(scene.teapot[X], scene.teapot[Y], scene.teapot[Z]);
-			glPushMatrix();
-				glTranslatef(0, 0, 4.75);
-				glRotatef(90, 1, 0, 0);
-				// 从此横x纵y深z
-				glRotatef(scene.fTpRtt, 0, 1, 0);
-				glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, scene.black);
-				glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, scene.golden);
-				//glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, scene.white);
-				glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, scene.white);
-				glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 80);
-
-				glEnable(GL_TEXTURE_2D);
-				glBindTexture(GL_TEXTURE_2D, scene.texture[0]);  //选择纹理texture[0]
-				//glColor3f(1.0f, 0.0f, 0.0f);
-
-				glutSolidTeapot(1);
-
-				glDisable(GL_TEXTURE_2D);
-			glPopMatrix();
+			glTranslatef(0, 0, 4.75);
+			glRotatef(90, 1, 0, 0);
+			// 横x纵y深z
+			glRotatef(scene.fTpRtt, 0, 1, 0);
+			drawTeapot();
 		glPopMatrix();
+	glPopMatrix();
 
-		// table
-		glPushMatrix();
-			glTranslatef(0, 0, 3.5);
-			glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, scene.red);
-			glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, scene.black);
-			drawDesktop();
-		glPopMatrix();
+	// table
+	glPushMatrix();
+		glTranslatef(0, 0, 3.5);
+		drawDesktop();
+	glPopMatrix();
 
-		// leg1
-		glPushMatrix();
-			glTranslatef(1.5, 1, 1.5);
-			glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, scene.green);
-			glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, scene.black);
-			drawLeg();
-		glPopMatrix();
+	// leg1
+	glPushMatrix();
+		glTranslatef(1.5, 1, 1.5);
+		drawLeg();
+	glPopMatrix();
 
-		// leg2
-		glPushMatrix();
-			glTranslatef(-1.5, 1, 1.5);
-			glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, scene.yellow);
-			glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, scene.black);
-			drawLeg();
-		glPopMatrix();
+	// leg2
+	glPushMatrix();
+		glTranslatef(-1.5, 1, 1.5);
+		drawLeg();
+	glPopMatrix();
 
-		// leg3
-		glPushMatrix();
-			glTranslatef(1.5, -1, 1.5);
-			glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, scene.turquoise);
-			glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, scene.black);
-			drawLeg();
-		glPopMatrix();
+	// leg3
+	glPushMatrix();
+		glTranslatef(1.5, -1, 1.5);
+		drawLeg();
+	glPopMatrix();
 
-		// leg4
-		glPushMatrix();
-			glTranslatef(-1.5, -1, 1.5);
-			glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, scene.blue);
-			glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, scene.black);
-			drawLeg();
-		glPopMatrix();
-	glPopAttrib();
+	// leg4
+	glPushMatrix();
+		glTranslatef(-1.5, -1, 1.5);
+		drawLeg();
+	glPopMatrix();
 }
 
 GLint genTableList() {
 	GLint lid = glGenLists(1);
 
 	glNewList(lid, GL_COMPILE);
-		drawScene();
+		drawObject();
 	glEndList();
 
 	return lid;
 }
 
 void drawLight(GLfloat* center, GLfloat radius) {
-	glPushAttrib(GL_LIGHTING_BIT);
-		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, scene.white);
+	glDisable(GL_LIGHTING);
 		glPushMatrix();
 			glTranslatef(center[X], center[Y], center[Z]);
 			glScalef(0.2, 0.2, 0.2);
@@ -161,5 +163,5 @@ void drawLight(GLfloat* center, GLfloat radius) {
 				}
 			glEnd();
 		glPopMatrix();
-	glPopAttrib();
+	glEnable(GL_LIGHTING);
 }
