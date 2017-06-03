@@ -95,12 +95,14 @@ void generateTex() {
 		for (int j = 0; j < TEX_WIDTH; j++) {
 			if ((i % 64 - 31.5) * (j % 64 - 31.5) <= 0) {
 				scene.image[i][j][0] = 255;
+				scene.image[i][j][1] = 0;
+				scene.image[i][j][2] = 0;
 			}
 			else {
 				scene.image[i][j][0] = 0;
+				scene.image[i][j][1] = 0;
+				scene.image[i][j][2] = 0;
 			}
-			scene.image[i][j][1] = 0;
-			scene.image[i][j][2] = 0;
 		}
 	}
 }

@@ -427,7 +427,7 @@ void processNormalKey(unsigned char k, int x, int y) {
 	}
 
 	// µ÷ÕûÎÆÀí
-	case '.': {
+	case 'v': {
 		scene.bMix = !scene.bMix;
 		if (scene.bMix) {
 			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -440,8 +440,9 @@ void processNormalKey(unsigned char k, int x, int y) {
 			strcpy(scene.message, ". pressed. Switch off tex-env mix mode.");
 		}
 		updateList();
+		break;
 	}
-	case ',': {
+	case 'b': {
 		scene.bSuper = !scene.bSuper;
 		if (scene.bSuper) {
 			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -454,6 +455,7 @@ void processNormalKey(unsigned char k, int x, int y) {
 			strcpy(scene.message, ", pressed. Switch off super texture mode.");
 		}
 		updateList();
+		break;
 	}
 	}
 }

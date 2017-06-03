@@ -79,7 +79,15 @@ void drawDesktop() {
 
 void drawTeapot() {
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, scene.texture[2]);  //选择纹理texture[0]
+	//glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, scene.red);
+	//glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, scene.blue);
+	//glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 80);
+	if (scene.bSuper) {
+		glBindTexture(GL_TEXTURE_2D, scene.texture[2]);  //选择纹理texture[0]
+	}
+	else {
+		glBindTexture(GL_TEXTURE_2D, scene.texture[0]);  //选择纹理texture[0]
+	}
 
 	glutSolidTeapot(1);
 
