@@ -3,7 +3,7 @@
 void initTexture() {
 	// 使用相加的混合模式
 	//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD);
-	glGenTextures(5, scene.texture);
+	glGenTextures(4, scene.texture);
 	texload(0, "Monet.bmp");
 	texload(1, "Crack.bmp");
 	// 加载自定义纹理
@@ -17,6 +17,10 @@ void initTexture() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	// TODO:加载复合纹理
+	glActiveTextureARB = (PFNGLCLIENTACTIVETEXTUREARBPROC)wglGetProcAddress("glActiveTextureARB");
+	glMultiTexCoord2fARB = (PFNGLMULTITEXCOORD2FARBPROC)wglGetProcAddress("glMultiTexCoord2fARB");
+	glClientActiveTextureARB = (PFNGLACTIVETEXTUREARBPROC)wglGetProcAddress("glClientActiveTextureARB");
+	texload(3, "Spot.bmp");
 }
 
 // 读纹理
@@ -109,4 +113,20 @@ void generateTex() {
 	}
 }
 
-// 生成复合纹理
+// 启用复合纹理
+void openMultitexture() {
+	glActiveTextureARB(GL_TEXTURE0_ARB);
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, scene.texture[1]);
+	glActiveTextureARB(GL_TEXTURE1_ARB);
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, scene.texture[3]);
+}
+
+// 关闭复合纹理
+void closeMultitexture() {
+	glActiveTextureARB(GL_TEXTURE1_ARB);
+	glDisable(GL_TEXTURE_2D);
+	glActiveTextureARB(GL_TEXTURE0_ARB);
+	glDisable(GL_TEXTURE_2D);
+}
