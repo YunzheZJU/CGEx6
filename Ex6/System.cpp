@@ -431,13 +431,13 @@ void processNormalKey(unsigned char k, int x, int y) {
 		scene.bMix = !scene.bMix;
 		if (scene.bMix) {
 			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-			cout << ". pressed.\n\tSwitch on tex-env mix mode." << endl;
-			strcpy(scene.message, ". pressed. Switch on tex-env mix mode.");
+			cout << "v pressed.\n\tSwitch on tex-env mix mode." << endl;
+			strcpy(scene.message, "v pressed. Switch on tex-env mix mode.");
 		}
 		else {
 			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-			cout << ". pressed.\n\tSwitch off tex-env mix mode." << endl;
-			strcpy(scene.message, ". pressed. Switch off tex-env mix mode.");
+			cout << "v pressed.\n\tSwitch off tex-env mix mode." << endl;
+			strcpy(scene.message, "v pressed. Switch off tex-env mix mode.");
 		}
 		updateList();
 		break;
@@ -445,14 +445,12 @@ void processNormalKey(unsigned char k, int x, int y) {
 	case 'b': {
 		scene.bSuper = !scene.bSuper;
 		if (scene.bSuper) {
-			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-			cout << ", pressed.\n\tSwitch on super texture mode." << endl;
-			strcpy(scene.message, ", pressed. Switch on super texture mode.");
+			cout << "b pressed.\n\tSwitch on super texture mode." << endl;
+			strcpy(scene.message, "b pressed. Switch on super texture mode.");
 		}
 		else {
-			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-			cout << ", pressed.\n\tSwitch off super texture mode." << endl;
-			strcpy(scene.message, ", pressed. Switch off super texture mode.");
+			cout << "b pressed.\n\tSwitch off super texture mode." << endl;
+			strcpy(scene.message, "b pressed. Switch off super texture mode.");
 		}
 		updateList();
 		break;

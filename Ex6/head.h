@@ -116,7 +116,6 @@ enum {
 };
 
 /*Draw.cpp*/
-void drawTeapotSuper();
 void drawLegSuper();
 void drawDesktopSuper();
 void drawCube();

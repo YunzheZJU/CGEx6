@@ -40,6 +40,7 @@ void showSysStatus() {
 	char *c;
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_LIGHTING);
+	glColor3f(1.0f, 1.0f, 1.0f);
 	glMatrixMode(GL_PROJECTION);			// 选择投影矩阵
 	glPushMatrix();							// 保存原矩阵
 		glLoadIdentity();						// 装入单位矩阵
@@ -48,7 +49,6 @@ void showSysStatus() {
 		glPushMatrix();							// 保存原矩阵
 			glLoadIdentity();						// 装入单位矩阵
 			glPushAttrib(GL_LIGHTING_BIT);
-				//glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, scene.white);
 				glRasterPos2f(-460, 420);
 				for (c = fpstext; *c != '\0'; c++) {
 					glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *c);

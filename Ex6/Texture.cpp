@@ -1,13 +1,15 @@
 #include "head.h"
 
 void initTexture() {
+	// 使用相加的混合模式
+	//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD);
 	glGenTextures(5, scene.texture);
 	texload(0, "Monet.bmp");
 	texload(1, "Crack.bmp");
 	// 加载自定义纹理
 	generateTex();
 	glBindTexture(GL_TEXTURE_2D, scene.texture[2]);
-	//设置像素存储模式控制所读取的图像数据的行对齐方式
+	// 设置像素存储模式控制所读取的图像数据的行对齐方式
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glTexImage2D(GL_TEXTURE_2D, 0, 3, TEX_WIDTH, TEX_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, scene.image);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);

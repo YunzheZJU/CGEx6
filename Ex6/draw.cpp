@@ -2,10 +2,6 @@
 
 #pragma warning(disable:4996)
 
-void drawTeapotSuper() {
-	// 红漫反射+纹理
-}
-
 void drawLegSuper() {
 	// 复合纹理
 }
@@ -57,10 +53,10 @@ void drawCube() {
 }
 
 void drawLeg() {
-	if (scene.bSuper) {
-		drawLegSuper();
-		return;
-	}
+	//if (scene.bSuper) {
+	//	drawLegSuper();
+	//	return;
+	//}
 
 	glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, scene.texture[1]);  //选择纹理texture[1]
@@ -79,16 +75,17 @@ void drawDesktop() {
 
 void drawTeapot() {
 	glEnable(GL_TEXTURE_2D);
-	//glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, scene.red);
-	//glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, scene.blue);
-	//glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 80);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, scene.white);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, scene.white);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, scene.white);
+	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 99);
 	if (scene.bSuper) {
-		glBindTexture(GL_TEXTURE_2D, scene.texture[2]);  //选择纹理texture[0]
+		glBindTexture(GL_TEXTURE_2D, scene.texture[2]);			// 选择纹理texture[0]
 	}
 	else {
-		glBindTexture(GL_TEXTURE_2D, scene.texture[0]);  //选择纹理texture[0]
+		glBindTexture(GL_TEXTURE_2D, scene.texture[0]);			// 选择纹理texture[0]
 	}
-
+	glColor3f(1.0f, 0.0f, 0.0f);
 	glutSolidTeapot(1);
 
 	glDisable(GL_TEXTURE_2D);
