@@ -105,6 +105,8 @@ void drawScene();
 GLint genTableList();
 void drawLight(GLfloat* center, GLfloat radius);
 
+/*Texture.cpp*/
+
 /*Light.cpp*/
 void initLight();
 void initPoint();

@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE | GLUT_MULTISAMPLE);
 	glutInitWindowSize(480, 480);
-	int windowHandle = glutCreateWindow("Ex 5");
+	int windowHandle = glutCreateWindow("Ex 6");
 
 	//GLint buf, sbuf;
 
