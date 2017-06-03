@@ -108,7 +108,9 @@ enum {
 };
 
 /*Draw.cpp*/
+void drawCube();
 void drawLeg();
+void drawDesktop();
 void drawScene();
 GLint genTableList();
 void drawLight(GLfloat* center, GLfloat radius);

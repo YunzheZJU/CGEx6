@@ -2,9 +2,61 @@
 
 #pragma warning(disable:4996)
 
+void drawCube() {
+	glScalef(0.5, 0.5, 0.5);
+
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, scene.texture[1]);  //—°‘ÒŒ∆¿Ìtexture[1]
+
+	glBegin(GL_QUADS);
+		glNormal3f(0, 0, 1);
+		glTexCoord2i(1, 1); glVertex3i(1, 1, 1);
+		glTexCoord2i(0, 1); glVertex3i(-1, 1, 1);
+		glTexCoord2i(0, 0); glVertex3i(-1, -1, 1);
+		glTexCoord2i(1, 0); glVertex3i(1, -1, 1);
+
+		glNormal3f(0, 1, 0);
+		glTexCoord2i(1, 1); glVertex3i(1, 1, 1);
+		glTexCoord2i(0, 1); glVertex3i(1, 1, -1);
+		glTexCoord2i(0, 0); glVertex3i(-1, 1, -1);
+		glTexCoord2i(1, 0); glVertex3i(-1, 1, 1);
+
+		glNormal3f(1, 0, 0);
+		glTexCoord2i(1, 1); glVertex3i(1, -1, 1);
+		glTexCoord2i(0, 1); glVertex3i(1, -1, -1);
+		glTexCoord2i(0, 0); glVertex3i(1, 1, -1);
+		glTexCoord2i(1, 0); glVertex3i(1, 1, 1);
+
+		glNormal3f(-1, 0, 0);
+		glTexCoord2i(1, 1); glVertex3i(-1, 1, 1);
+		glTexCoord2i(0, 1); glVertex3i(-1, 1, -1);
+		glTexCoord2i(0, 0); glVertex3i(-1, -1, -1);
+		glTexCoord2i(1, 0); glVertex3i(-1, -1, 1);
+
+		glNormal3f(0, -1, 0);
+		glTexCoord2i(1, 1); glVertex3i(-1, -1, 1);
+		glTexCoord2i(0, 1); glVertex3i(-1, -1, -1);
+		glTexCoord2i(0, 0); glVertex3i(1, -1, -1);
+		glTexCoord2i(1, 0); glVertex3i(1, -1, 1);
+
+		glNormal3f(0, 0, -1);
+		glTexCoord2i(1, 1); glVertex3i(-1, 1, -1);
+		glTexCoord2i(0, 1); glVertex3i(1, 1, -1);
+		glTexCoord2i(0, 0); glVertex3i(1, -1, -1);
+		glTexCoord2i(1, 0); glVertex3i(-1, -1, -1);
+	glEnd();
+
+	glDisable(GL_TEXTURE_2D);
+}
+
 void drawLeg() {
 	glScalef(1, 1, 3);
-	glutSolidCube(1.0);
+	drawCube();
+}
+
+void drawDesktop() {
+	glScalef(5, 4, 1);
+	drawCube();
 }
 
 void drawScene() {
@@ -37,10 +89,9 @@ void drawScene() {
 		// table
 		glPushMatrix();
 			glTranslatef(0, 0, 3.5);
-			glScalef(5, 4, 1);
 			glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, scene.red);
 			glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, scene.black);
-			glutSolidCube(1.0);
+			drawDesktop();
 		glPopMatrix();
 
 		// leg1

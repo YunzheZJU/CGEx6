@@ -88,15 +88,15 @@ void redraw() {
 
 	if (scene.bpoint) {
 		updatePoint();						// 更新点光源信息并启用
-		//drawLight(scene.point, 0.5);
+		drawLight(scene.point, 0.5);
 	}
 	else {
 		glDisable(GL_LIGHT0);
 	}
 	if (scene.bspot) {
 		updateSpot();						// 更新聚光灯信息并启用
-		//drawLight(scene.spot, 0.25);
-		//drawLight(scene.spot_target, 0.25);
+		drawLight(scene.spot, 0.25);
+		drawLight(scene.spot_target, 0.25);
 	}
 	else {
 		glDisable(GL_LIGHT1);
