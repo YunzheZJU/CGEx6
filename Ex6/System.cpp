@@ -65,7 +65,7 @@ void processMenu(int value) {
 void redraw() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();						// Reset The Current Modelview Matrix
-
+	
 	gluLookAt(scene.camera[X], scene.camera[Y], scene.camera[Z],
 		scene.camera_target[X], scene.camera_target[Y], scene.camera_target[Z],
 		0, 1, 0);							// 摄像机（0，1，4）的视点中心（0, 1, 0），Y轴向上
@@ -88,15 +88,15 @@ void redraw() {
 
 	if (scene.bpoint) {
 		updatePoint();						// 更新点光源信息并启用
-		drawLight(scene.point, 0.5);
+		//drawLight(scene.point, 0.5);
 	}
 	else {
 		glDisable(GL_LIGHT0);
 	}
 	if (scene.bspot) {
 		updateSpot();						// 更新聚光灯信息并启用
-		drawLight(scene.spot, 0.25);
-		drawLight(scene.spot_target, 0.25);
+		//drawLight(scene.spot, 0.25);
+		//drawLight(scene.spot_target, 0.25);
 	}
 	else {
 		glDisable(GL_LIGHT1);

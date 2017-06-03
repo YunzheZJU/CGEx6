@@ -20,6 +20,9 @@ int main(int argc, char *argv[]) {
 	//glGetIntegerv(GL_SAMPLES, &sbuf);
 	//printf("number of samples is %d\n", sbuf);
 
+	// Initiate the texture
+	initTexture();
+
 	// Initiate the Menu
 	initMenu();
 	// Initiate the display list

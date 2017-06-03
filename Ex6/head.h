@@ -1,6 +1,7 @@
 #pragma once
 
 // Include related head files and IO classes
+#include <windows.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -26,9 +27,15 @@ using namespace std;
 #define A 1
 
 // Define Pi in math
-#define Pi 3.1415926
+#define PI 3.1415926
+
+// Define BITMAP_ID
+#define BITMAP_ID 0x4D42
 
 typedef struct {
+	// 纹理标示符数组，保存3个纹理的标示符
+	unsigned int texture[3];
+
 	// Declare height and width variables for size of new window
 	int wHeight = 0;							// Height of new window
 	int wWidth = 0;								// Width of new window
@@ -106,6 +113,9 @@ GLint genTableList();
 void drawLight(GLfloat* center, GLfloat radius);
 
 /*Texture.cpp*/
+void initTexture();
+unsigned char *LoadBitmapFile(char *filename, BITMAPINFOHEADER *bitmapInfoHeader);
+void texload(int i, char *filename);
 
 /*Light.cpp*/
 void initLight();
