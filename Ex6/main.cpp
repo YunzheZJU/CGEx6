@@ -4,6 +4,7 @@
 #include "head.h"
 
 #pragma warning(disable:4996)
+#pragma comment (lib, "glew32.lib")
 
 Myscene scene;
 

@@ -4,9 +4,10 @@
 
 void drawLegSuper() {
 	// 复合纹理
+	glScalef(1, 1, 3);
 	openMultitexture();
 
-	glColor3f(1.0f, 0.0f, 0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
 	drawCubeSuper();
 
 	closeMultitexture();
@@ -35,20 +36,75 @@ void drawCubeSuper() {
 	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 1, 0);
 	glVertex3i(1, -1, 1);
 
-	glNormal3f(0, 0, 1);
+	glNormal3f(0, 1, 0);
 	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 1, 1);
 	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 1, 1);
 	glVertex3i(1, 1, 1);
 	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 0, 1);
 	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 0, 1);
-	glVertex3i(-1, 1, 1);
+	glVertex3i(1, 1, -1);
 	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 0, 0);
 	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 0, 0);
+	glVertex3i(-1, 1, -1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 1, 0);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 1, 0);
+	glVertex3i(-1, 1, 1);
+
+	glNormal3f(1, 0, 0);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 1, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 1, 1);
+	glVertex3i(1, -1, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 0, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 0, 1);
+	glVertex3i(1, -1, -1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 0, 0);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 0, 0);
+	glVertex3i(1, 1, -1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 1, 0);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 1, 0);
+	glVertex3i(1, 1, 1);
+
+	glNormal3f(-1, 0, 0);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 1, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 1, 1);
+	glVertex3i(-1, 1, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 0, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 0, 1);
+	glVertex3i(-1, 1, -1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 0, 0);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 0, 0);
+	glVertex3i(-1, -1, -1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 1, 0);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 1, 0);
 	glVertex3i(-1, -1, 1);
+
+	glNormal3f(0, -1, 0);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 1, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 1, 1);
+	glVertex3i(-1, -1, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 0, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 0, 1);
+	glVertex3i(-1, -1, -1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 0, 0);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 0, 0);
+	glVertex3i(1, -1, -1);
 	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 1, 0);
 	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 1, 0);
 	glVertex3i(1, -1, 1);
 
+	glNormal3f(0, 0, -1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 1, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 1, 1);
+	glVertex3i(-1, 1, -1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 0, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 0, 1);
+	glVertex3i(1, 1, -1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 0, 0);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 0, 0);
+	glVertex3i(1, -1, -1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 1, 0);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 1, 0);
+	glVertex3i(-1, -1, -1);
 	glEnd();
 }
 
@@ -100,6 +156,7 @@ void drawLeg() {
 		return;
 	}
 
+	glActiveTextureARB(GL_TEXTURE0_ARB);
 	glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, scene.texture[1]);  //选择纹理texture[1]
 		glScalef(1, 1, 3);
@@ -108,6 +165,7 @@ void drawLeg() {
 }
 
 void drawDesktop() {
+	glActiveTextureARB(GL_TEXTURE0_ARB);
 	glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, scene.texture[1]);  //选择纹理texture[1]
 		glScalef(5, 4, 1);
@@ -116,6 +174,7 @@ void drawDesktop() {
 }
 
 void drawTeapot() {
+	glActiveTextureARB(GL_TEXTURE0_ARB);
 	glEnable(GL_TEXTURE_2D);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, scene.white);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, scene.white);

@@ -427,6 +427,7 @@ void processNormalKey(unsigned char k, int x, int y) {
 	}
 
 	// µ÷ÕûÎÆÀí
+	case 'V':
 	case 'v': {
 		scene.bMix = !scene.bMix;
 		if (scene.bMix) {
@@ -442,6 +443,7 @@ void processNormalKey(unsigned char k, int x, int y) {
 		updateList();
 		break;
 	}
+	case 'B':
 	case 'b': {
 		scene.bSuper = !scene.bSuper;
 		if (scene.bSuper) {
