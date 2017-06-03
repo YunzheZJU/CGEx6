@@ -118,6 +118,7 @@ enum {
 /*Draw.cpp*/
 void drawLegSuper();
 void drawDesktopSuper();
+void drawCubeSuper();
 void drawCube();
 void drawLeg();
 void drawDesktop();
@@ -131,6 +132,8 @@ void initTexture();
 unsigned char *LoadBitmapFile(char *filename, BITMAPINFOHEADER *bitmapInfoHeader);
 void texload(int i, char *filename);
 void generateTex();
+void openMultitexture();
+void closeMultitexture();
 
 /*Light.cpp*/
 void initLight();

@@ -4,10 +4,52 @@
 
 void drawLegSuper() {
 	// 复合纹理
+	openMultitexture();
+
+	glColor3f(1.0f, 0.0f, 0.0f);
+	drawCubeSuper();
+
+	closeMultitexture();
 }
 
 void drawDesktopSuper() {
 	// 复合纹理
+}
+
+void drawCubeSuper() {
+	glScalef(0.5, 0.5, 0.5);
+	// 指定多重纹理坐标的绘制
+
+	glBegin(GL_QUADS);
+	glNormal3f(0, 0, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 1, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 1, 1);
+	glVertex3i(1, 1, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 0, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 0, 1);
+	glVertex3i(-1, 1, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 0, 0);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 0, 0);
+	glVertex3i(-1, -1, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 1, 0);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 1, 0);
+	glVertex3i(1, -1, 1);
+
+	glNormal3f(0, 0, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 1, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 1, 1);
+	glVertex3i(1, 1, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 0, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 0, 1);
+	glVertex3i(-1, 1, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 0, 0);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 0, 0);
+	glVertex3i(-1, -1, 1);
+	glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 1, 0);
+	glMultiTexCoord2fARB(GL_TEXTURE1_ARB, 1, 0);
+	glVertex3i(1, -1, 1);
+
+	glEnd();
 }
 
 void drawCube() {
@@ -53,10 +95,10 @@ void drawCube() {
 }
 
 void drawLeg() {
-	//if (scene.bSuper) {
-	//	drawLegSuper();
-	//	return;
-	//}
+	if (scene.bSuper) {
+		drawLegSuper();
+		return;
+	}
 
 	glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, scene.texture[1]);  //选择纹理texture[1]
@@ -85,7 +127,7 @@ void drawTeapot() {
 	else {
 		glBindTexture(GL_TEXTURE_2D, scene.texture[0]);			// 选择纹理texture[0]
 	}
-	glColor3f(1.0f, 0.0f, 0.0f);
+	//glColor3f(1.0f, 0.0f, 0.0f);
 	glutSolidTeapot(1);
 
 	glDisable(GL_TEXTURE_2D);
