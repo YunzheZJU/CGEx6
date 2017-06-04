@@ -1,8 +1,9 @@
 #include "head.h"
 
+#pragma warning(disable:4018)
+#pragma warning(disable:4996)
+
 void initTexture() {
-	// 使用相加的混合模式
-	//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD);
 	glGenTextures(4, scene.texture);
 	texload(0, "Monet.bmp");
 	texload(1, "Crack.bmp");
@@ -17,7 +18,7 @@ void initTexture() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	// TODO:加载复合纹理
+	// 加载复合纹理
 	glActiveTextureARB = (PFNGLCLIENTACTIVETEXTUREARBPROC)wglGetProcAddress("glActiveTextureARB");
 	glMultiTexCoord2fARB = (PFNGLMULTITEXCOORD2FARBPROC)wglGetProcAddress("glMultiTexCoord2fARB");
 	glClientActiveTextureARB = (PFNGLACTIVETEXTUREARBPROC)wglGetProcAddress("glClientActiveTextureARB");
@@ -62,7 +63,7 @@ unsigned char *LoadBitmapFile(char *filename, BITMAPINFOHEADER *bitmapInfoHeader
 		return NULL;
 	}
 
-	//由于bitmap中保存的格式是BGR，下面交换R和B的值，得到RGB格式
+	// 由于bitmap中保存的格式是BGR，下面交换R和B的值，得到RGB格式
 	for (imageIdx = 0;
 		imageIdx < bitmapInfoHeader->biSizeImage; imageIdx += 3) {
 		tempRGB = bitmapImage[imageIdx];
@@ -85,14 +86,14 @@ void texload(int i, char *filename) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
 	glTexImage2D(GL_TEXTURE_2D,
-		0,																//mipmap层次(通常为，表示最上层) 
-		GL_RGB,															//我们希望该纹理有红、绿、蓝数据
-		bitmapInfoHeader.biWidth,										//纹理宽带，必须是n，若有边框+2 
-		bitmapInfoHeader.biHeight,										//纹理高度，必须是n，若有边框+2 
-		0,																//边框(0=无边框, 1=有边框) 
-		GL_RGB,															//bitmap数据的格式
-		GL_UNSIGNED_BYTE,												//每个颜色数据的类型
-		bitmapData);													//bitmap数据指针  
+		0,																// mipmap层次(通常为，表示最上层) 
+		GL_RGB,															// 我们希望该纹理有红、绿、蓝数据
+		bitmapInfoHeader.biWidth,										// 纹理宽带，必须是n，若有边框+2 
+		bitmapInfoHeader.biHeight,										// 纹理高度，必须是n，若有边框+2 
+		0,																// 边框(0=无边框, 1=有边框) 
+		GL_RGB,															// bitmap数据的格式
+		GL_UNSIGNED_BYTE,												// 每个颜色数据的类型
+		bitmapData);													// bitmap数据指针  
 }
 
 // 生成自定义纹理

@@ -2,6 +2,21 @@
 
 #pragma warning(disable:4996)
 
+void init() {
+	// Initiate color
+	glColor3f(1.0f, 1.0f, 1.0f);	// !important
+	// Initiate texture
+	initTexture();
+	// Initiate menu
+	initMenu();
+	// Initiate display list
+	scene.List = genTableList();
+	// Initiate lighting
+	initLight();
+	initPoint();
+	initSpot();
+}
+
 void idle() {
 	glutPostRedisplay();
 }

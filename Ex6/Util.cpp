@@ -39,8 +39,7 @@ void showSysStatus() {
 
 	char *c;
 	glDisable(GL_DEPTH_TEST);
-	glDisable(GL_LIGHTING);
-	glColor3f(1.0f, 1.0f, 1.0f);
+	glDisable(GL_LIGHTING);					// 不受灯光影响
 	glMatrixMode(GL_PROJECTION);			// 选择投影矩阵
 	glPushMatrix();							// 保存原矩阵
 		glLoadIdentity();						// 装入单位矩阵

@@ -116,11 +116,11 @@ enum {
 };
 
 /*Draw.cpp*/
-void drawDesktopSuper();
-void drawCubeSuper();
 void drawCube();
-void drawLeg();
+void drawCubeSuper();
 void drawDesktop();
+void drawDesktopSuper();
+void drawLeg();
 void drawTeapot();
 void drawObject();
 GLint genTableList();
@@ -148,6 +148,7 @@ void updateCamera();
 void showSysStatus();
 
 /*System.cpp*/
+void init();
 void idle();
 void initMenu(void);
 void processMenu(int value);
