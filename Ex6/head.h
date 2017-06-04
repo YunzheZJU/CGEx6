@@ -37,8 +37,8 @@ using namespace std;
 #define TEX_WIDTH 256 
 
 typedef struct {
-	// 纹理标示符数组，保存3个纹理的标示符
-	unsigned int texture[3];
+	// 纹理标示符数组，保存4个纹理的标示符
+	unsigned int texture[4];
 
 	// Declare height and width variables for size of new window
 	int wHeight = 0;							// Height of new window
@@ -116,7 +116,6 @@ enum {
 };
 
 /*Draw.cpp*/
-void drawLegSuper();
 void drawDesktopSuper();
 void drawCubeSuper();
 void drawCube();

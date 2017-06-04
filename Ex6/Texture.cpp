@@ -6,9 +6,10 @@ void initTexture() {
 	glGenTextures(4, scene.texture);
 	texload(0, "Monet.bmp");
 	texload(1, "Crack.bmp");
+	texload(2, "Spot.bmp");
 	// 加载自定义纹理
 	generateTex();
-	glBindTexture(GL_TEXTURE_2D, scene.texture[2]);
+	glBindTexture(GL_TEXTURE_2D, scene.texture[3]);
 	// 设置像素存储模式控制所读取的图像数据的行对齐方式
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glTexImage2D(GL_TEXTURE_2D, 0, 3, TEX_WIDTH, TEX_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, scene.image);
@@ -20,7 +21,6 @@ void initTexture() {
 	glActiveTextureARB = (PFNGLCLIENTACTIVETEXTUREARBPROC)wglGetProcAddress("glActiveTextureARB");
 	glMultiTexCoord2fARB = (PFNGLMULTITEXCOORD2FARBPROC)wglGetProcAddress("glMultiTexCoord2fARB");
 	glClientActiveTextureARB = (PFNGLACTIVETEXTUREARBPROC)wglGetProcAddress("glClientActiveTextureARB");
-	texload(3, "Spot.bmp");
 }
 
 // 读纹理
@@ -117,11 +117,11 @@ void generateTex() {
 void openMultitexture() {
 	glActiveTextureARB(GL_TEXTURE0_ARB);
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, scene.texture[1]);
+	glBindTexture(GL_TEXTURE_2D, scene.texture[2]);
 
 	glActiveTextureARB(GL_TEXTURE1_ARB);
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, scene.texture[3]);
+	glBindTexture(GL_TEXTURE_2D, scene.texture[1]);
 }
 
 // 关闭复合纹理
