@@ -139,7 +139,7 @@ void reshape(int width, int height) {
 	scene.wHeight = height;
 	scene.wWidth = width;
 
-	updateView(scene.wHeight, scene.wWidth);
+	updateView(scene.wWidth, scene.wHeight);
 }
 
 void updateView(int width, int height) {
