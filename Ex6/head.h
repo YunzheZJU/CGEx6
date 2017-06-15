@@ -56,7 +56,7 @@ typedef struct {
 	GLboolean bSpot = GL_TRUE;					// Switch for spot light
 	GLboolean bPersp = GL_TRUE;					// Switch for perspective mode
 	GLboolean bMix = GL_TRUE;					// Switch for tex-env mix mode
-	GLboolean bMsaa = GL_FALSE;					// Switch for perspective mode
+	GLboolean bMsaa = GL_FALSE;					// Switch for multisampling anti-alias
 	GLboolean bWire = GL_FALSE;					// Switch for line mode
 	GLboolean bAnim = GL_FALSE;					// Switch for global rotating
 	GLboolean bRtt = GL_FALSE;					// Switch for local rotating
