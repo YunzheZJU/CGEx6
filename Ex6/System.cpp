@@ -162,9 +162,10 @@ void updateView(int width, int height) {
 }
 
 void processMouse(int button, int state, int x, int y) {
-	if (state == GLUT_DOWN) {
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 		scene.bMsaa = !scene.bMsaa;
-		printf("switch msaa\n");
+		cout << "LMB pressed. Switch on/off multisampling anti-alias.\n" << endl;
+		strcpy(scene.message, "LMB pressed. Switch on/off multisampling anti-alias.");
 		glutPostRedisplay();
 	}
 }
